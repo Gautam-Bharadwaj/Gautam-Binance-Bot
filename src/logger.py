@@ -33,6 +33,7 @@ def setup_logger(name: str = "binance_bot"):
 
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
+    
 
     return logger
 
