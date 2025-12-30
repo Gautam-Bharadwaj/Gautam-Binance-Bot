@@ -1,4 +1,5 @@
 import sys
+
 from src.config import get_binance_client
 from src.validator import (
     validate_symbol,
@@ -24,7 +25,7 @@ def place_stop_limit_order(
     Places a STOP-LIMIT order on Binance USDT-M Futures
     """
     try:
-        # Validate inputs
+        # ---------------- VALIDATION ----------------
         validate_symbol(symbol)
         validate_side(side)
         validate_quantity(quantity)
@@ -38,17 +39,24 @@ def place_stop_limit_order(
             f"Quantity: {quantity} | Limit: {limit_price} | Stop: {stop_price}"
         )
 
-        order = client.futures_create_order(
+        # ---------------- STOP-LIMIT ORDER ----------------
+        sl_order = client.futures_create_order(
             symbol=symbol,
             side=side,
             type="STOP",
             timeInForce="GTC",
             quantity=quantity,
-            price=limit_price,
-            stopPrice=stop_price,
+            price=limit_price,      # LIMIT price
+            stopPrice=stop_price,   # STOP trigger
         )
 
-        logger.info(f"Stop-Limit order placed successfully: {order}")
+        # Defensive check (testnet safety)
+        if not sl_order or "orderId" not in sl_order:
+            raise RuntimeError(
+                "Stop-Limit order response missing orderId (testnet limitation)"
+            )
+
+        logger.info(f"Stop-Limit order placed successfully: {sl_order}")
         print("✅ Stop-Limit order placed successfully")
 
     except Exception as e:
@@ -59,7 +67,8 @@ def place_stop_limit_order(
 def main():
     if len(sys.argv) != 6:
         print(
-            "Usage: python3 stop_limit.py <symbol> <BUY/SELL> <quantity> <limit_price> <stop_price>"
+            "Usage: python3 -m src.advanced.stop_limit "
+            "<symbol> <BUY/SELL> <quantity> <limit_price> <stop_price>"
         )
         sys.exit(1)
 
