@@ -6,25 +6,6 @@ A CLI-based trading bot for Binance USDT-M Futures that supports basic and advan
 
 ---
 
-##  Table of Contents
-
-- [✨ Features](#-features)
-- [🛠 Tech Stack](#-tech-stack)
-- [📂 Project Structure](#-project-structure)
-- [🔑 API Setup](#-api-setup)
-- [📦 Installation](#-installation)
-- [▶️ How to Run](#️-how-to-run)
-  - [Market Order](#-market-order)
-  - [Limit Order](#-limit-order)
-  - [Stop-Limit Order](#-stop-limit-order)
-  - [TWAP Strategy](#-twap-strategy)
-  - [OCO (Simulated)](#-oco-simulated)
-- [📄 Logging](#-logging)
-- [⚠️ Known Limitations](#️-known-limitations)
-- [📘 Report](#-report)
-- [🔮 Future Improvements](#-future-improvements)
-- [🧑‍💻 Author](#-author)
-- [📌 Disclaimer](#-disclaimer)
 
 ---
 
