@@ -1,12 +1,12 @@
 import sys
-from config import get_binance_client
-from validator import (
+from src.config import get_binance_client
+from src.validator import (
     validate_symbol,
     validate_side,
     validate_quantity,
     validate_price,
 )
-from logger import setup_logger
+from src.logger import setup_logger
 
 logger = setup_logger()
 

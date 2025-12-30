@@ -1,7 +1,8 @@
 import os
 from dotenv import load_dotenv
 from binance.client import Client
-from logger import setup_logger
+from src.logger import setup_logger
+
 
 # Load environment variables
 load_dotenv()
