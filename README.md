@@ -197,4 +197,5 @@ Academic / Learning Project
 
 > ⚠️ **This project is for educational purposes only.**  
 > It is not financial advice and should not be used for live trading without proper risk management.
+> This project was developed using Binance Futures Testnet. Some conditional orders may fail gracefully due to known testnet limitations.
 
