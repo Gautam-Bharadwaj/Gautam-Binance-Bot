@@ -1,4 +1,4 @@
-# 🚀 Binance Futures Order Bot (CLI-Based)
+#  Binance Futures Order Bot (CLI-Based)
 
 A CLI-based trading bot for Binance USDT-M Futures that supports basic and advanced order types, with robust validation, structured logging, and modular design.
 
@@ -6,7 +6,7 @@ A CLI-based trading bot for Binance USDT-M Futures that supports basic and advan
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [✨ Features](#-features)
 - [🛠 Tech Stack](#-tech-stack)
@@ -28,18 +28,18 @@ A CLI-based trading bot for Binance USDT-M Futures that supports basic and advan
 
 ---
 
-## ✨ Features
+##  Features
 
-### ✅ Core Orders (Mandatory)
+### Core Orders (Mandatory)
 - Market Orders
 - Limit Orders
 
-### ⭐ Advanced Orders (Bonus)
+###  Advanced Orders (Bonus)
 - Stop-Limit Orders
 - OCO (One-Cancels-the-Other) – simulated for Futures
 - TWAP (Time-Weighted Average Price) – split orders over time
 
-### 🔒 Safety & Engineering
+###  Safety & Engineering
 - Input validation before API calls
 - Centralized logging (`bot.log`)
 - Defensive programming for Binance Futures testnet limitations
@@ -48,7 +48,7 @@ A CLI-based trading bot for Binance USDT-M Futures that supports basic and advan
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 | Technology | Purpose |
 |------------|---------|
@@ -60,7 +60,7 @@ A CLI-based trading bot for Binance USDT-M Futures that supports basic and advan
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 Gautam-Binance-Bot/
@@ -81,10 +81,10 @@ Gautam-Binance-Bot/
 
 ---
 
-## 🔑 API Setup
+##  API Setup
 
 1. Create a Binance Futures **TESTNET** account
-   - 👉 [https://testnet.binancefuture.com](https://testnet.binancefuture.com)
+   -  [https://testnet.binancefuture.com](https://testnet.binancefuture.com)
 
 2. Create a `.env` file in the project root:
 
@@ -94,11 +94,11 @@ BINANCE_API_SECRET=your_api_secret_here
 BINANCE_TESTNET=true
 ```
 
-> ⚠️ **Never commit .env or bot.log to GitHub**
+>  **Never commit .env or bot.log to GitHub**
 
 ---
 
-## 📦 Installation
+##  Installation
 
 ```bash
 pip3 install python-binance python-dotenv
@@ -106,29 +106,29 @@ pip3 install python-binance python-dotenv
 
 ---
 
-## ▶️ How to Run
+## ▶ How to Run
 
 > **Note:** All commands must be run from the project root directory.
 
-### 📍 Market Order
+###  Market Order
 
 ```bash
 python3 -m src.market_orders BTCUSDT BUY 0.01
 ```
 
-### 📍 Limit Order
+###  Limit Order
 
 ```bash
 python3 -m src.limit_orders BTCUSDT SELL 0.01 45000
 ```
 
-### 📍 Stop-Limit Order
+###  Stop-Limit Order
 
 ```bash
 python3 -m src.advanced.stop_limit BTCUSDT SELL 0.01 44800 44700
 ```
 
-### 📍 TWAP Strategy
+###  TWAP Strategy
 
 ```bash
 python3 -m src.advanced.twap BTCUSDT BUY 0.02 4 15
@@ -140,7 +140,7 @@ python3 -m src.advanced.twap BTCUSDT BUY 0.02 4 15
 | `4` | Number of slices |
 | `15` | Interval (seconds) |
 
-### 📍 OCO (Simulated)
+###  OCO (Simulated)
 
 ```bash
 python3 -m src.advanced.oco BTCUSDT SELL 0.01 45500 44500
@@ -154,11 +154,11 @@ python3 -m src.advanced.oco BTCUSDT SELL 0.01 45500 44500
 
 All actions are logged in `bot.log`, including:
 
-- ✅ Order placement
-- ❌ Validation errors
-- 📡 API responses
-- ⚠️ Testnet limitations
-- 📊 Execution status
+-  Order placement
+-  Validation errors
+-  API responses
+-  Testnet limitations
+-  Execution status
 
 **Example log entry:**
 
@@ -168,7 +168,7 @@ All actions are logged in `bot.log`, including:
 
 ---
 
-## ⚠️ Known Limitations (Important)
+##  Known Limitations (Important)
 
 Binance Futures **TESTNET** may return incomplete responses (e.g., missing `orderId`) for:
 
@@ -182,7 +182,7 @@ This project detects and handles such cases gracefully instead of assuming succe
 
 ---
 
-## 📘 Report
+##  Report
 
 Please refer to `report.pdf` for:
 
@@ -194,7 +194,7 @@ Please refer to `report.pdf` for:
 
 ---
 
-## 🔮 Future Improvements
+##  Future Improvements
 
 - [ ] WebSocket-based order monitoring
 - [ ] Native OCO support (spot)
@@ -204,7 +204,7 @@ Please refer to `report.pdf` for:
 
 ---
 
-## 🧑‍💻 Author
+##  Author
 
 **Kumar Gautam**  
 Binance Futures Order Bot – CLI  
@@ -212,7 +212,7 @@ Academic / Learning Project
 
 ---
 
-## 📌 Disclaimer
+##  Disclaimer
 
 > ⚠️ **This project is for educational purposes only.**  
 > It is not financial advice and should not be used for live trading without proper risk management.
