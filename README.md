@@ -1,51 +1,69 @@
-🚀 Binance Futures Order Bot (CLI-Based)
+# 🚀 Binance Futures Order Bot (CLI-Based)
 
 A CLI-based trading bot for Binance USDT-M Futures that supports basic and advanced order types, with robust validation, structured logging, and modular design.
 
-This project is built for educational and evaluation purposes, focusing on clean architecture, safety, and real-world trading logic rather than profit generation.
+> **Note:** This project is built for educational and evaluation purposes, focusing on clean architecture, safety, and real-world trading logic rather than profit generation.
 
-📌 Features
-✅ Core Orders (Mandatory)
+---
 
-Market Orders
+## 📋 Table of Contents
 
-Limit Orders
+- [✨ Features](#-features)
+- [🛠 Tech Stack](#-tech-stack)
+- [📂 Project Structure](#-project-structure)
+- [🔑 API Setup](#-api-setup)
+- [📦 Installation](#-installation)
+- [▶️ How to Run](#️-how-to-run)
+  - [Market Order](#-market-order)
+  - [Limit Order](#-limit-order)
+  - [Stop-Limit Order](#-stop-limit-order)
+  - [TWAP Strategy](#-twap-strategy)
+  - [OCO (Simulated)](#-oco-simulated)
+- [📄 Logging](#-logging)
+- [⚠️ Known Limitations](#️-known-limitations)
+- [📘 Report](#-report)
+- [🔮 Future Improvements](#-future-improvements)
+- [🧑‍💻 Author](#-author)
+- [📌 Disclaimer](#-disclaimer)
 
-⭐ Advanced Orders (Bonus)
+---
 
-Stop-Limit Orders
+## ✨ Features
 
-OCO (One-Cancels-the-Other) – simulated for Futures
+### ✅ Core Orders (Mandatory)
+- Market Orders
+- Limit Orders
 
-TWAP (Time-Weighted Average Price) – split orders over time
+### ⭐ Advanced Orders (Bonus)
+- Stop-Limit Orders
+- OCO (One-Cancels-the-Other) – simulated for Futures
+- TWAP (Time-Weighted Average Price) – split orders over time
 
-🔒 Safety & Engineering
+### 🔒 Safety & Engineering
+- Input validation before API calls
+- Centralized logging (`bot.log`)
+- Defensive programming for Binance Futures testnet limitations
+- CLI-based execution
+- Modular and extensible structure
 
-Input validation before API calls
+---
 
-Centralized logging (bot.log)
+## 🛠 Tech Stack
 
-Defensive programming for Binance Futures testnet limitations
+| Technology | Purpose |
+|------------|---------|
+| Python 3 | Programming Language |
+| python-binance | Binance API Client |
+| python-dotenv | Environment Variables |
+| Python logging | Logging |
+| sys.argv | CLI Handling |
 
-CLI-based execution
+---
 
-Modular and extensible structure
+## 📂 Project Structure
 
-🛠 Tech Stack
-
-Language: Python 3
-
-Binance API: python-binance
-
-Environment Variables: python-dotenv
-
-Logging: Python logging
-
-CLI Handling: sys.argv
-
-📂 Project Structure
+```
 Gautam-Binance-Bot/
-│
 ├── src/
 │   ├── config.py            # Binance client configuration
 │   ├── logger.py            # Centralized logging
@@ -56,123 +74,146 @@ Gautam-Binance-Bot/
 │       ├── stop_limit.py    # Stop-Limit orders
 │       ├── twap.py          # TWAP strategy
 │       └── oco.py           # Simulated OCO orders
-│
 ├── README.md
 ├── report.pdf
 └── bot.log                  # Generated at runtime
+```
 
-🔑 API Setup
+---
 
-Create a Binance Futures TESTNET account
-👉 https://testnet.binancefuture.com
+## 🔑 API Setup
 
-Create a .env file in the project root:
+1. Create a Binance Futures **TESTNET** account
+   - 👉 [https://testnet.binancefuture.com](https://testnet.binancefuture.com)
 
+2. Create a `.env` file in the project root:
+
+```env
 BINANCE_API_KEY=your_api_key_here
 BINANCE_API_SECRET=your_api_secret_here
 BINANCE_TESTNET=true
+```
 
+> ⚠️ **Never commit .env or bot.log to GitHub**
 
-⚠️ Never commit .env or bot.log to GitHub
+---
 
-📦 Installation
+## 📦 Installation
+
+```bash
 pip3 install python-binance python-dotenv
+```
 
-▶️ How to Run the Bot
+---
 
-All commands must be run from the project root directory.
+## ▶️ How to Run
 
-🔹 Market Order
+> **Note:** All commands must be run from the project root directory.
+
+### 📍 Market Order
+
+```bash
 python3 -m src.market_orders BTCUSDT BUY 0.01
+```
 
-🔹 Limit Order
+### 📍 Limit Order
+
+```bash
 python3 -m src.limit_orders BTCUSDT SELL 0.01 45000
+```
 
-🔹 Stop-Limit Order
+### 📍 Stop-Limit Order
+
+```bash
 python3 -m src.advanced.stop_limit BTCUSDT SELL 0.01 44800 44700
+```
 
-🔹 TWAP Strategy
+### 📍 TWAP Strategy
+
+```bash
 python3 -m src.advanced.twap BTCUSDT BUY 0.02 4 15
+```
 
+| Parameter | Description |
+|-----------|-------------|
+| `0.02` | Total Quantity |
+| `4` | Number of slices |
+| `15` | Interval (seconds) |
 
-Total Quantity: 0.02
+### 📍 OCO (Simulated)
 
-Number of slices: 4
-
-Interval: 15 seconds
-
-🔹 OCO (Simulated)
+```bash
 python3 -m src.advanced.oco BTCUSDT SELL 0.01 45500 44500
+```
 
+> Places a take-profit and stop-loss order. When one is filled, the other is cancelled.
 
-Places a take-profit and stop-loss order.
-When one is filled, the other is cancelled.
+---
 
-📄 Logging
+## 📄 Logging
 
-All actions are logged in bot.log, including:
+All actions are logged in `bot.log`, including:
 
-Order placement
+- ✅ Order placement
+- ❌ Validation errors
+- 📡 API responses
+- ⚠️ Testnet limitations
+- 📊 Execution status
 
-Validation errors
+**Example log entry:**
 
-API responses
-
-Testnet limitations
-
-Execution status
-
-Example log entry:
-
+```
 2025-12-30 | INFO | binance_bot | Placing MARKET order | Symbol: BTCUSDT | Side: BUY | Quantity: 0.01
+```
 
-⚠️ Known Limitations (Important)
+---
 
-Binance Futures TESTNET may return incomplete responses (e.g., missing orderId) for:
+## ⚠️ Known Limitations (Important)
 
-LIMIT orders
+Binance Futures **TESTNET** may return incomplete responses (e.g., missing `orderId`) for:
 
-STOP orders
-
-Conditional orders
+- LIMIT orders
+- STOP orders
+- Conditional orders
 
 This project detects and handles such cases gracefully instead of assuming successful execution.
 
-This behavior is logged clearly and explained in report.pdf.
+> This behavior is logged clearly and explained in `report.pdf`.
 
-📘 Report
+---
 
-Please refer to report.pdf for:
+## 📘 Report
 
-Architecture overview
+Please refer to `report.pdf` for:
 
-Order flow explanation
+- Architecture overview
+- Order flow explanation
+- Screenshots of execution & logs
+- Discussion of testnet limitations
+- Design decisions
 
-Screenshots of execution & logs
+---
 
-Discussion of testnet limitations
+## 🔮 Future Improvements
 
-Design decisions
+- [ ] WebSocket-based order monitoring
+- [ ] Native OCO support (spot)
+- [ ] Risk management rules
+- [ ] Strategy backtesting
+- [ ] Dashboard UI
 
-🔮 Future Improvements
+---
 
-WebSocket-based order monitoring
+## 🧑‍💻 Author
 
-Native OCO support (spot)
-
-Risk management rules
-
-Strategy backtesting
-
-Dashboard UI
-
-🧑‍💻 Author
-
-Kumar Gautam 
-Binance Futures Order Bot – CLI
+**Kumar Gautam**  
+Binance Futures Order Bot – CLI  
 Academic / Learning Project
 
-📌 Disclaimer
+---
 
-This project is for educational purposes only.
-It is not financial advice and should not be used for live trading without proper risk management.
+## 📌 Disclaimer
+
+> ⚠️ **This project is for educational purposes only.**  
+> It is not financial advice and should not be used for live trading without proper risk management.
+
