@@ -131,7 +131,7 @@ python3 -m src.advanced.oco BTCUSDT SELL 0.01 45500 44500
 
 ---
 
-## 📄 Logging
+##  Logging
 
 All actions are logged in `bot.log`, including:
 
